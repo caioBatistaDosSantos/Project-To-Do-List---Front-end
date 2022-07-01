@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlanetContext from './PlanetContext';
+import ListContext from './ListContext';
+import STUB_DB from '../stub-db';
 
-function PlanetProvider({ children }) {
-  const valueProvider = {};
-  
+function ListProvider({ children }) {
+  const valueProvider = { STUB_DB };
+
   return (
-    <PlanetContext.Provider value={ valueProvider }>
+    <ListContext.Provider value={ valueProvider }>
       {children}
-    </PlanetContext.Provider>
+    </ListContext.Provider>
   );
 }
 
-PlanetProvider.propTypes = {
+ListProvider.propTypes = {
   children: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-export default PlanetProvider;
+export default ListProvider;
