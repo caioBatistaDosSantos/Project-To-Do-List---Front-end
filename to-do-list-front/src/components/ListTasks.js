@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
-  const { STUB_DB } = useContext(ListContext);
-  console.log(STUB_DB)
+  const { data } = useContext(ListContext);
   
   return (
     <section>
@@ -19,7 +18,7 @@ function ListTask() {
           </tr>
         </thead>
         <tbody>
-          {STUB_DB.map((e) => (
+          {data.map((e) => (
             <tr key={e.id}>
               <td>{e.taskList}</td>
               <td>{e.status}</td>
