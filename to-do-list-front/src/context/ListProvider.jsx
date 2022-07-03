@@ -1,10 +1,13 @@
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ListContext from './ListContext';
 
-const APP_TO_DO_BACK_URL = 'https://to-do-list-back-dev-caio.herokuapp.com';
+const DEV_TEST = true;
+const APP_TO_DO_BACK_URL = DEV_TEST ? 'http://localhost:3000' : 'https://to-do-list-back-dev-caio.herokuapp.com';
 
 function ListProvider({ children }) {
   const [data, setData] = useState([]);
@@ -30,9 +33,14 @@ function ListProvider({ children }) {
   };
 
   useEffect(() => {
-    axios.get(`${APP_TO_DO_BACK_URL}/list`).then((response) => {
-      setData(response.data);
-    });
+    axios.get(`${APP_TO_DO_BACK_URL}/list`)
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch(() => {
+        alert(`Sorry! The Database service is temporarily offline, but you can use the temporary version of the App!
+        Thanks!`);
+      });
   }, [updateTask]);
 
   const hendleChange = ({ target }) => {

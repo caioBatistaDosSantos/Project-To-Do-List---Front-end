@@ -3,19 +3,19 @@ const STUB_DB = [
     id: 1,
     taskList: 'exemplo de tesk 1',
     status: 'pendente',
-    date: ''
+    date: '',
   },
   {
     id: 2,
     taskList: 'exemplo de tesk 2',
     status: 'concluida',
-    date: ''
+    date: '',
   },
   {
     id: 3,
     taskList: 'exemplo de tesk 3',
     status: 'em desenvolvimento',
-    date: ''
+    date: '',
   },
 ];
 
