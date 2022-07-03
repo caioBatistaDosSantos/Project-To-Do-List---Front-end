@@ -14,7 +14,7 @@ function NewTask() {
 
   return (
     <section>
-      <label>
+      <label htmlFor="new-task">
         {updateId ? <i>Atualize a tarefa: </i> : <i>Insira uma nova tarefa: </i>}
         <input
           type="text"
@@ -24,7 +24,7 @@ function NewTask() {
           onChange={(e) => hendleChange(e)}
         />
       </label>
-      <label>
+      <label htmlFor="column-status">
         {updateId ? <i>Novo status: </i> : <i>Status: </i>}
         <select
           id="column-status"
@@ -46,7 +46,7 @@ function NewTask() {
         type="button"
         id="btn-add-task"
         name="btn-add-task"
-        onClick={() => updateId ? updateTask() : createTask()}
+        onClick={() => (updateId ? updateTask() : createTask())}
       >
         {updateId ? 'Atualizar Tarefa' : 'Adicionar Tarefa'}
       </button>
