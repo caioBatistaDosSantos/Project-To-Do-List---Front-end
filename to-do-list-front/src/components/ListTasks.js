@@ -2,9 +2,7 @@ import React, { useContext } from 'react';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
-  const { data, axiosData } = useContext(ListContext);
-
-  console.log(axiosData);
+  const { data } = useContext(ListContext);
   
   return (
     <section>
@@ -22,7 +20,7 @@ function ListTask() {
         <tbody>
           {data.map((e) => (
             <tr key={e.id}>
-              <td>{e.taskList}</td>
+              <td>{e.task_list}</td>
               <td>{e.status}</td>
               <td>{e.date}</td>
               <td>
