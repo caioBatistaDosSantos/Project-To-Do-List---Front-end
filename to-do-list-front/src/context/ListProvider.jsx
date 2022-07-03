@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -77,7 +78,7 @@ function ListProvider({ children }) {
 
   const STATUS = ['pendente', 'em andamento', 'pronto'];
 
-  const valueProvider = {
+  const VALUE_PROVIDER = {
     data,
     STATUS,
     newTask,
@@ -91,7 +92,7 @@ function ListProvider({ children }) {
   };
 
   return (
-    <ListContext.Provider value={valueProvider}>
+    <ListContext.Provider value={VALUE_PROVIDER}>
       {children}
     </ListContext.Provider>
   );
