@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
-  const { data } = useContext(ListContext);
-  
+  const { data, btnDeleteTask, btnUpdateTask } = useContext(ListContext);
+
   return (
     <section>
       <span>Todas as Tarefas</span>
@@ -20,14 +20,14 @@ function ListTask() {
         <tbody>
           {data.map((e) => (
             <tr key={e.id}>
-              <td>{e.taskList}</td>
+              <td>{e.task_list}</td>
               <td>{e.status}</td>
               <td>{e.date}</td>
               <td>
                 <button
                   type="button"
                   id="btn-update"
-                  onClick={ () => console.log('click btn-update') }
+                  onClick={() => btnUpdateTask(e.id, e.task_list, e.status)}
                 >
                   O
                 </button>
@@ -36,7 +36,7 @@ function ListTask() {
                 <button
                   type="button"
                   id="btn-delete"
-                  onClick={ () => console.log('click btn-delete') }
+                  onClick={() => btnDeleteTask(e.id)}
                 >
                   X
                 </button>
