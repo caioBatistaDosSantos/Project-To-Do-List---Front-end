@@ -11,7 +11,7 @@ function ListProvider({ children }) {
   const [selectStatus, setSelectStatus] = useState('pendente');
 
   useEffect(() => {
-    axios.get('https://to-do-list-back-dev-caio.herokuapp.com/list').then((response) => {
+    axios.get(`${APP_TO_DO_BACK_URL}/list`).then((response) => {
       setData(response.data);
     });
   }, []);
@@ -26,17 +26,20 @@ function ListProvider({ children }) {
   };
 
   const btnAddTask = () => {
-    const date = Date.now();
-
-    setData((prevState) => [
-      ...prevState,
-      {
-        id: Math.random(),
-        taskList: newTask,
+    axios
+      .post(`${APP_TO_DO_BACK_URL}/list`, {
+        task: newTask,
         status: selectStatus,
-        date,
-      }
-    ])
+      })
+      .then((response) => {
+        setData((prevState) => [
+          ...prevState,
+          response.data
+        ]);
+      })
+      .catch(({ response }) => {
+        alert(response.data.message);
+      });
   }
 
   const STATUS = ['pendente', 'em andamento', 'pronto'];
