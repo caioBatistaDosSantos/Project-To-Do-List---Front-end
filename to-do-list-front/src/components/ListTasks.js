@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
-  const { data } = useContext(ListContext);
+  const { data, axiosData } = useContext(ListContext);
+
+  console.log(axiosData);
   
   return (
     <section>

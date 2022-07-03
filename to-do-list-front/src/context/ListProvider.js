@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from "axios";
 import ListContext from './ListContext';
 import STUB_DB from '../stub-db';
 
 function ListProvider({ children }) {
   const [data, setData] = useState([]);
+  const [axiosData, setAxiosData] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [selectStatus, setSelectStatus] = useState('pendente');
 
   useEffect(() => {
-    setData(STUB_DB)
+    setData(STUB_DB);
+    axios.get(`${process.env.APP_TO_DO_BACK_URL}/list`).then((response) => {
+      setAxiosData(response);
+    });
   }, []);
 
   const hendleChange = ({ target }) => {
@@ -39,6 +44,7 @@ function ListProvider({ children }) {
 
   const valueProvider = {
     data,
+    axiosData,
     STATUS,
     hendleChange,
     btnAddTask,
