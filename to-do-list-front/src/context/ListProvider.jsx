@@ -42,8 +42,13 @@ function ListProvider({ children }) {
       });
   };
 
-  const btnDeleteTask = ({ target }) => {
-    console.log(target);
+  const btnDeleteTask = (id) => {
+    axios
+      .delete(`${APP_TO_DO_BACK_URL}/list/${id}`)
+      .then((response) => {
+        setData((prevState) => prevState.filter((ele) => ele.id !== id));
+        alert(response.data.message);
+      });
   };
 
   const STATUS = ['pendente', 'em andamento', 'pronto'];
@@ -53,10 +58,11 @@ function ListProvider({ children }) {
     STATUS,
     hendleChange,
     btnAddTask,
+    btnDeleteTask,
   };
 
   return (
-    <ListContext.Provider value={ valueProvider }>
+    <ListContext.Provider value={valueProvider}>
       {children}
     </ListContext.Provider>
   );
