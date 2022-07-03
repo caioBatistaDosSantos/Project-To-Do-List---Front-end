@@ -3,7 +3,7 @@ import ListContext from '../context/ListContext';
 
 function ListTask() {
   const { data } = useContext(ListContext);
-  
+
   return (
     <section>
       <span>Todas as Tarefas</span>
@@ -27,7 +27,7 @@ function ListTask() {
                 <button
                   type="button"
                   id="btn-update"
-                  onClick={ () => console.log('click btn-update') }
+                  onClick={() => console.log('click btn-update')}
                 >
                   O
                 </button>
@@ -36,7 +36,7 @@ function ListTask() {
                 <button
                   type="button"
                   id="btn-delete"
-                  onClick={ () => console.log('click btn-delete') }
+                  onClick={() => console.log('click btn-delete')}
                 >
                   X
                 </button>

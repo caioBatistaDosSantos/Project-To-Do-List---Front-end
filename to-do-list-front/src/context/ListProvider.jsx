@@ -21,7 +21,7 @@ function ListProvider({ children }) {
     if (name === 'new-task') {
       setNewTask(value);
     } else {
-      setSelectStatus(value)
+      setSelectStatus(value);
     }
   };
 
@@ -34,13 +34,17 @@ function ListProvider({ children }) {
       .then((response) => {
         setData((prevState) => [
           ...prevState,
-          response.data
+          response.data,
         ]);
       })
       .catch(({ response }) => {
         alert(response.data.message);
       });
-  }
+  };
+
+  const btnDeleteTask = ({ target }) => {
+    console.log(target);
+  };
 
   const STATUS = ['pendente', 'em andamento', 'pronto'];
 
