@@ -2,6 +2,8 @@
 
 require('dotenv').config();
 
+console.log('next: ', process.env.APP_TO_DO_BACK_URL)
+
 module.exports = {
   env: {
     APP_TO_DO_BACK_URL: process.env.APP_TO_DO_BACK_URL
