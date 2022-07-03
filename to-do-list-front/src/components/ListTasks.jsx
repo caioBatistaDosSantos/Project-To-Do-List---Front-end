@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
-  const { data, btnDeleteTask } = useContext(ListContext);
+  const { data, btnDeleteTask, btnUpdateTask } = useContext(ListContext);
 
   return (
     <section>
@@ -27,7 +27,7 @@ function ListTask() {
                 <button
                   type="button"
                   id="btn-update"
-                  onClick={() => console.log('click btn-update')}
+                  onClick={() => btnUpdateTask(e.id, e.task_list, e.status)}
                 >
                   O
                 </button>

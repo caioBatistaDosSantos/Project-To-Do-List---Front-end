@@ -9,12 +9,30 @@ function ListProvider({ children }) {
   const [data, setData] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [selectStatus, setSelectStatus] = useState('pendente');
+  const [updateId, setUpdateId] = useState(false);
+
+  const updateTask = () => {
+    axios
+      .put(`${APP_TO_DO_BACK_URL}/list/${updateId}`, {
+        task: newTask,
+        status: selectStatus,
+      })
+      .then((response) => {
+        setUpdateId(false);
+        setNewTask('');
+        setSelectStatus('pendente');
+        alert(response.data.message);
+      })
+      .catch(({ response }) => {
+        alert(response.data.message);
+      });
+  };
 
   useEffect(() => {
     axios.get(`${APP_TO_DO_BACK_URL}/list`).then((response) => {
       setData(response.data);
     });
-  }, []);
+  }, [updateTask]);
 
   const hendleChange = ({ target }) => {
     const { name, value } = target;
@@ -25,7 +43,7 @@ function ListProvider({ children }) {
     }
   };
 
-  const btnAddTask = () => {
+  const createTask = () => {
     axios
       .post(`${APP_TO_DO_BACK_URL}/list`, {
         task: newTask,
@@ -42,6 +60,12 @@ function ListProvider({ children }) {
       });
   };
 
+  const btnUpdateTask = (id, task, status) => {
+    setUpdateId(id);
+    setNewTask(task);
+    setSelectStatus(status);
+  };
+
   const btnDeleteTask = (id) => {
     axios
       .delete(`${APP_TO_DO_BACK_URL}/list/${id}`)
@@ -56,9 +80,14 @@ function ListProvider({ children }) {
   const valueProvider = {
     data,
     STATUS,
+    newTask,
+    selectStatus,
+    updateId,
     hendleChange,
-    btnAddTask,
+    updateTask,
+    createTask,
     btnDeleteTask,
+    btnUpdateTask,
   };
 
   return (

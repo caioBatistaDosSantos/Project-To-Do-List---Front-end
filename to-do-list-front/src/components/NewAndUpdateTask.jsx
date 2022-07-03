@@ -4,27 +4,33 @@ import ListContext from '../context/ListContext';
 function NewTask() {
   const {
     STATUS,
+    newTask,
+    selectStatus,
+    updateId,
     hendleChange,
-    btnAddTask,
+    updateTask,
+    createTask,
   } = useContext(ListContext);
-  
+
   return (
     <section>
       <label>
-        <i>Insira uma nova tarefa: </i>
+        {updateId ? <i>Atualize a tarefa: </i> : <i>Insira uma nova tarefa: </i>}
         <input
           type="text"
           id="new-task"
           name="new-task"
-          onChange={ (e) => hendleChange(e)}
+          value={newTask}
+          onChange={(e) => hendleChange(e)}
         />
       </label>
       <label>
-        <i>Status: </i>
+        {updateId ? <i>Novo status: </i> : <i>Status: </i>}
         <select
           id="column-status"
           name="column-status"
-          onChange={ (e) => hendleChange(e)}
+          value={selectStatus}
+          onChange={(e) => hendleChange(e)}
         >
           {STATUS.map((e) => (
             <option
@@ -40,9 +46,9 @@ function NewTask() {
         type="button"
         id="btn-add-task"
         name="btn-add-task"
-        onClick={ () => btnAddTask() }
+        onClick={() => updateId ? updateTask() : createTask()}
       >
-        Adicionar Tarefa
+        {updateId ? 'Atualizar Tarefa' : 'Adicionar Tarefa'}
       </button>
     </section>
   );
