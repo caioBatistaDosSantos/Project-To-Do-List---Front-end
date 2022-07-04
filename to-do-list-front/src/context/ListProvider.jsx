@@ -41,7 +41,7 @@ function ListProvider({ children }) {
         alert(`Sorry! The Database service is temporarily offline, but you can use the temporary version of the App!
         Thanks!`);
       });
-  }, [updateTask]);
+  }, []);
 
   const hendleChange = ({ target }) => {
     const { name, value } = target;
@@ -107,7 +107,7 @@ function ListProvider({ children }) {
 }
 
 ListProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.any).isRequired,
+  children: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default ListProvider;
