@@ -1,5 +1,11 @@
 import React, { useContext } from 'react';
-import { Button } from 'reactstrap';
+import {
+  Button,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 import ListContext from '../context/ListContext';
 
 function NewTask() {
@@ -13,6 +19,8 @@ function NewTask() {
     createTask,
   } = useContext(ListContext);
 
+  const noRefCheck = () => {};
+
   return (
     <section>
       <label htmlFor="new-task">
@@ -25,24 +33,29 @@ function NewTask() {
           onChange={(e) => hendleChange(e)}
         />
       </label>
-      <label htmlFor="column-status">
+      <ButtonDropdown
+        toggle={noRefCheck}
+      >
         {updateId ? <i>Novo status: </i> : <i>Status: </i>}
-        <select
+        <DropdownToggle caret>
+          {selectStatus}
+        </DropdownToggle>
+        <DropdownMenu
           id="column-status"
           name="column-status"
           value={selectStatus}
-          onChange={(e) => hendleChange(e)}
+          // onChange={(e) => hendleChange(e)}
         >
           {STATUS.map((e) => (
-            <option
+            <DropdownItem
               key={e}
               id={e}
             >
               {e}
-            </option>
+            </DropdownItem>
           ))}
-        </select>
-      </label>
+        </DropdownMenu>
+      </ButtonDropdown>
       <Button
         color={updateId ? 'warning' : 'success'}
         outline

@@ -15,7 +15,11 @@ function ListProvider({ children }) {
   const [selectStatus, setSelectStatus] = useState('pendente');
   const [updateId, setUpdateId] = useState(false);
 
+  console.log('`status: `', selectStatus);
+
   const updateTask = () => {
+    console.log('task: ', newTask);
+    console.log('status: ', selectStatus);
     axios
       .put(`${APP_TO_DO_BACK_URL}/list/${updateId}`, {
         task: newTask,
