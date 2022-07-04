@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Card,
   FormGroup,
@@ -9,12 +9,10 @@ import {
   CardSubtitle,
 } from 'reactstrap';
 import '../App.css';
-// import ListContext from '../context/ListContext';, { useContext }
+import ListContext from '../context/ListContext';
 
 function SearchAndOrder() {
-  // const {
-  //   sortData, data, btnDeleteTask, btnUpdateTask,
-  // } = useContext(ListContext);
+  const { getAllList } = useContext(ListContext);
   // console.log('data: ', data);
   // sortData.sort((a, b) => a.task_list + b.task_list);
   // console.log('sortData: ', sortData);
@@ -35,6 +33,7 @@ function SearchAndOrder() {
               <Input
                 name="radio1"
                 type="radio"
+                onClick={() => getAllList()}
               />
               {' '}
               Data de criação
