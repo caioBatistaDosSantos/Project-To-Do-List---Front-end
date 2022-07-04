@@ -6,7 +6,12 @@ import {
 import ListContext from '../context/ListContext';
 
 function ListTask() {
-  const { data, btnDeleteTask, btnUpdateTask } = useContext(ListContext);
+  const {
+    sortData, data, btnDeleteTask, btnUpdateTask,
+  } = useContext(ListContext);
+  console.log('data: ', data);
+  sortData.sort((a, b) => a.task_list + b.task_list);
+  console.log('sortData: ', sortData);
 
   return (
     <section>

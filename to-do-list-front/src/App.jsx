@@ -8,6 +8,7 @@ import {
 import './App.css';
 import ListTask from './components/ListTasks';
 import NewAndUpdateTask from './components/NewAndUpdateTask';
+import SearchAndOrder from './components/SearchAndOrder';
 import ListProvider from './context/ListProvider';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           </CardTitle>
           <CardSubtitle className="mb-2 text-muted">
             <NewAndUpdateTask />
+            <SearchAndOrder />
             <ListTask />
           </CardSubtitle>
         </CardBody>
