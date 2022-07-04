@@ -4,6 +4,7 @@ import {
   Button,
   Row,
 } from 'reactstrap';
+import '../App.css';
 import ListContext from '../context/ListContext';
 
 function NewTask() {
@@ -56,6 +57,7 @@ function NewTask() {
         type="button"
         id="btn-add-task"
         name="btn-add-task"
+        className="Card"
         onClick={() => (updateId ? updateTask() : createTask())}
       >
         {updateId ? 'Atualizar Tarefa' : 'Adicionar Tarefa'}

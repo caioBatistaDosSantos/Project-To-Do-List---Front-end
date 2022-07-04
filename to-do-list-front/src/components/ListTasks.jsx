@@ -3,14 +3,27 @@ import {
   Table,
   Button,
 } from 'reactstrap';
+import '../App.css';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
-  const { data, btnDeleteTask, btnUpdateTask } = useContext(ListContext);
+  const {
+    data, btnDeleteTask, btnUpdateTask, order, statusSearch,
+  } = useContext(ListContext);
 
   return (
-    <section>
-      <span>Todas as Tarefas</span>
+    <section className="Table">
+      {order
+        ? (
+          <span>
+            <i>{`${statusSearch} por ordem de criação:`}</i>
+          </span>
+        )
+        : (
+          <span>
+            <i>{`${statusSearch} em ordem alfabética:`}</i>
+          </span>
+        )}
       <Table
         hover
         responsive
