@@ -5,27 +5,31 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ListContext from './ListContext';
-
-const DEV_TEST = true;
-const APP_TO_DO_BACK_URL = DEV_TEST ? 'http://localhost:3000' : 'https://to-do-list-back-dev-caio.herokuapp.com';
+import {
+  APP_TO_DO_BACK_URL,
+  PENDING,
+  STATUS,
+  ALL_TASKS,
+  SEARCH_STATUS,
+} from '../services/consts';
 
 function ListProvider({ children }) {
   const [data, setData] = useState([]);
-  const [dataSearch, setDataSearch] = useState([]);
+  const [dataForSearch, setDataForSearch] = useState([]);
   const [newTask, setNewTask] = useState('');
-  const [selectStatus, setSelectStatus] = useState('pendente');
-  const [searchSelectStatus, setSearchSelectStatus] = useState('Todas as Tarefas');
+  const [selectStatus, setSelectStatus] = useState(PENDING);
+  const [searchSelectStatus, setSearchSelectStatus] = useState(ALL_TASKS);
   const [updateId, setUpdateId] = useState(false);
   const [order, setOrder] = useState(true);
-  const [statusSearch, setStatusSearch] = useState('Todas as Tarefas');
+  const [statusSearch, setStatusSearch] = useState(ALL_TASKS);
 
   const getAllList = () => {
     axios.get(`${APP_TO_DO_BACK_URL}/list`)
       .then((response) => {
         setData(response.data);
-        setDataSearch(response.data);
+        setDataForSearch(response.data);
         setOrder(true);
-        setStatusSearch('Todas as Tarefas');
+        setStatusSearch(ALL_TASKS);
       })
       .catch(() => {
         alert(`Sorry! The Database service is temporarily offline, but you can use the temporary version of the App!
@@ -42,7 +46,7 @@ function ListProvider({ children }) {
       .then((response) => {
         setUpdateId(false);
         setNewTask('');
-        setSelectStatus('pendente');
+        setSelectStatus(PENDING);
         alert(response.data.message);
       })
       .catch(({ response }) => {
@@ -78,7 +82,7 @@ function ListProvider({ children }) {
           response.data,
         ]);
         setNewTask('');
-        setSelectStatus('pendente');
+        setSelectStatus(PENDING);
       })
       .catch(({ response }) => {
         alert(response.data.message);
@@ -112,9 +116,30 @@ function ListProvider({ children }) {
     setOrder(false);
   };
 
-  const STATUS = ['pendente', 'em andamento', 'pronto'];
+  const filterByStatus = (status) => {
+    const newData = dataForSearch;
+    const dataFilter = newData.filter((e) => e.status === status);
 
-  const SEARCH_STATUS = ['Todas as Tarefas', 'Tarefas Pendentes', 'Tarefas em Andamento', 'Tarefas Prontas'];
+    setData(dataFilter);
+    setStatusSearch(searchSelectStatus);
+  };
+
+  function btnSearch() {
+    if (searchSelectStatus === SEARCH_STATUS[1]) {
+      return filterByStatus(STATUS[0]);
+    }
+
+    if (searchSelectStatus === SEARCH_STATUS[2]) {
+      return filterByStatus(STATUS[1]);
+    }
+
+    if (searchSelectStatus === SEARCH_STATUS[3]) {
+      return filterByStatus(2);
+    }
+
+    setData(dataForSearch);
+    return setStatusSearch(searchSelectStatus);
+  }
 
   const VALUE_PROVIDER = {
     data,
@@ -133,6 +158,7 @@ function ListProvider({ children }) {
     SEARCH_STATUS,
     searchSelectStatus,
     statusSearch,
+    btnSearch,
   };
 
   return (

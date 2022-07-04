@@ -19,6 +19,7 @@ function SearchAndOrder() {
     SEARCH_STATUS,
     hendleChange,
     searchSelectStatus,
+    btnSearch,
   } = useContext(ListContext);
 
   return (
@@ -95,6 +96,7 @@ function SearchAndOrder() {
               id="btn-search"
               name="btn-search"
               className="margin-top"
+              onClick={() => btnSearch()}
             >
               Buscar
             </Button>
