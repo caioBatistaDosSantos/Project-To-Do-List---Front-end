@@ -15,8 +15,8 @@ function ListProvider({ children }) {
   const [selectStatus, setSelectStatus] = useState('pendente');
   const [updateId, setUpdateId] = useState(false);
 
-  const updateTask = () => {
-    axios
+  const updateTask = async () => {
+    await axios
       .put(`${APP_TO_DO_BACK_URL}/list/${updateId}`, {
         task: newTask,
         status: selectStatus,
@@ -30,6 +30,10 @@ function ListProvider({ children }) {
       .catch(({ response }) => {
         alert(response.data.message);
       });
+    await axios.get(`${APP_TO_DO_BACK_URL}/list`)
+      .then((response) => {
+        setData(response.data);
+      });
   };
 
   useEffect(() => {
@@ -41,7 +45,7 @@ function ListProvider({ children }) {
         alert(`Sorry! The Database service is temporarily offline, but you can use the temporary version of the App!
         Thanks!`);
       });
-  }, [updateTask]);
+  }, []);
 
   const hendleChange = ({ target }) => {
     const { name, value } = target;
@@ -107,7 +111,7 @@ function ListProvider({ children }) {
 }
 
 ListProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.any).isRequired,
+  children: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default ListProvider;

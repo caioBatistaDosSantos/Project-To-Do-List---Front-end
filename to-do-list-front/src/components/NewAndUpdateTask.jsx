@@ -1,4 +1,9 @@
 import React, { useContext } from 'react';
+import {
+  Input,
+  Button,
+  Row,
+} from 'reactstrap';
 import ListContext from '../context/ListContext';
 
 function NewTask() {
@@ -13,10 +18,11 @@ function NewTask() {
   } = useContext(ListContext);
 
   return (
-    <section>
+    <Row>
       <label htmlFor="new-task">
         {updateId ? <i>Atualize a tarefa: </i> : <i>Insira uma nova tarefa: </i>}
-        <input
+        <Input
+          bsSize="lg"
           type="text"
           id="new-task"
           name="new-task"
@@ -26,7 +32,8 @@ function NewTask() {
       </label>
       <label htmlFor="column-status">
         {updateId ? <i>Novo status: </i> : <i>Status: </i>}
-        <select
+        <Input
+          type="select"
           id="column-status"
           name="column-status"
           value={selectStatus}
@@ -40,17 +47,20 @@ function NewTask() {
               {e}
             </option>
           ))}
-        </select>
+        </Input>
       </label>
-      <button
+      <Button
+        color={updateId ? 'warning' : 'success'}
+        outline
+        size="lg"
         type="button"
         id="btn-add-task"
         name="btn-add-task"
         onClick={() => (updateId ? updateTask() : createTask())}
       >
         {updateId ? 'Atualizar Tarefa' : 'Adicionar Tarefa'}
-      </button>
-    </section>
+      </Button>
+    </Row>
   );
 }
 
