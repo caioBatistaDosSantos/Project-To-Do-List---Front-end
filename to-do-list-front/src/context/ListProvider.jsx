@@ -13,6 +13,7 @@ function ListProvider({ children }) {
   const [data, setData] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [selectStatus, setSelectStatus] = useState('pendente');
+  const [searchSelectStatus, setSearchSelectStatus] = useState('Todas as Tarefas');
   const [updateId, setUpdateId] = useState(false);
   const [order, setOrder] = useState(true);
 
@@ -20,6 +21,7 @@ function ListProvider({ children }) {
     axios.get(`${APP_TO_DO_BACK_URL}/list`)
       .then((response) => {
         setData(response.data);
+        setOrder(true);
       })
       .catch(() => {
         alert(`Sorry! The Database service is temporarily offline, but you can use the temporary version of the App!
@@ -53,8 +55,10 @@ function ListProvider({ children }) {
     const { name, value } = target;
     if (name === 'new-task') {
       setNewTask(value);
-    } else {
+    } else if (name === 'column-status') {
       setSelectStatus(value);
+    } else {
+      setSearchSelectStatus(value);
     }
   };
 
@@ -106,6 +110,8 @@ function ListProvider({ children }) {
 
   const STATUS = ['pendente', 'em andamento', 'pronto'];
 
+  const SEARCH_STATUS = ['Todas as Tarefas', 'Tarefas Pendentes', 'Tarefas em Andamento', 'Tarefas Prontas'];
+
   const VALUE_PROVIDER = {
     data,
     STATUS,
@@ -120,6 +126,8 @@ function ListProvider({ children }) {
     sortByDate,
     sortAlphabetically,
     order,
+    SEARCH_STATUS,
+    searchSelectStatus,
   };
 
   return (
