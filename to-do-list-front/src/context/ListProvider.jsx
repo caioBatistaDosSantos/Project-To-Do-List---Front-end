@@ -11,17 +11,21 @@ const APP_TO_DO_BACK_URL = DEV_TEST ? 'http://localhost:3000' : 'https://to-do-l
 
 function ListProvider({ children }) {
   const [data, setData] = useState([]);
+  const [dataSearch, setDataSearch] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [selectStatus, setSelectStatus] = useState('pendente');
   const [searchSelectStatus, setSearchSelectStatus] = useState('Todas as Tarefas');
   const [updateId, setUpdateId] = useState(false);
   const [order, setOrder] = useState(true);
+  const [statusSearch, setStatusSearch] = useState('Todas as Tarefas');
 
   const getAllList = () => {
     axios.get(`${APP_TO_DO_BACK_URL}/list`)
       .then((response) => {
         setData(response.data);
+        setDataSearch(response.data);
         setOrder(true);
+        setStatusSearch('Todas as Tarefas');
       })
       .catch(() => {
         alert(`Sorry! The Database service is temporarily offline, but you can use the temporary version of the App!
@@ -128,6 +132,7 @@ function ListProvider({ children }) {
     order,
     SEARCH_STATUS,
     searchSelectStatus,
+    statusSearch,
   };
 
   return (

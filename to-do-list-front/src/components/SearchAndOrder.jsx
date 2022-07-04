@@ -7,12 +7,19 @@ import {
   Row,
   Col,
   CardSubtitle,
+  Button,
 } from 'reactstrap';
 import '../App.css';
 import ListContext from '../context/ListContext';
 
 function SearchAndOrder() {
-  const { sortByDate, sortAlphabetically } = useContext(ListContext);
+  const {
+    sortByDate,
+    sortAlphabetically,
+    SEARCH_STATUS,
+    hendleChange,
+    searchSelectStatus,
+  } = useContext(ListContext);
 
   return (
     <div>
@@ -20,7 +27,7 @@ function SearchAndOrder() {
         <Row tag="fieldset">
           <Col>
             <FormGroup>
-              <CardSubtitle tag="h6">
+              <CardSubtitle tag="h6" className="margin-top">
                 Ordenar por:
               </CardSubtitle>
             </FormGroup>
@@ -56,11 +63,41 @@ function SearchAndOrder() {
       <Card className="Card">
         <Row tag="fieldset">
           <Col>
-            <FormGroup>
-              <CardSubtitle tag="h6">
-                Buscar por:
-              </CardSubtitle>
-            </FormGroup>
+            <CardSubtitle tag="h6" className="margin-top">
+              Buscar por:
+            </CardSubtitle>
+          </Col>
+          <Col>
+            <Input
+              type="select"
+              id="column-status-search"
+              className="margin-top"
+              name="column-status-search"
+              value={searchSelectStatus}
+              onChange={(e) => hendleChange(e)}
+            >
+              {SEARCH_STATUS.map((e) => (
+                <option
+                  key={e}
+                  id={e}
+                >
+                  {e}
+                </option>
+              ))}
+            </Input>
+          </Col>
+          <Col>
+            <Button
+              color="secondary"
+              outline
+              block
+              type="button"
+              id="btn-search"
+              name="btn-search"
+              className="margin-top"
+            >
+              Buscar
+            </Button>
           </Col>
         </Row>
       </Card>
