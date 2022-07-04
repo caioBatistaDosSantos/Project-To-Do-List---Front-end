@@ -12,48 +12,59 @@ import '../App.css';
 import ListContext from '../context/ListContext';
 
 function SearchAndOrder() {
-  const { getAllList } = useContext(ListContext);
-  // console.log('data: ', data);
-  // sortData.sort((a, b) => a.task_list + b.task_list);
-  // console.log('sortData: ', sortData);
+  const { sortByDate, sortAlphabetically } = useContext(ListContext);
 
   return (
-    <Card className="Card">
-      <Row tag="fieldset">
-        <Col>
-          <FormGroup>
-            <CardSubtitle tag="h6">
-              Ordenar por:
-            </CardSubtitle>
-          </FormGroup>
-        </Col>
-        <Col>
-          <FormGroup>
-            <Label check>
-              <Input
-                name="radio1"
-                type="radio"
-                onClick={() => getAllList()}
-              />
-              {' '}
-              Data de criação
-            </Label>
-          </FormGroup>
-        </Col>
-        <Col>
-          <FormGroup>
-            <Label check>
-              <Input
-                name="radio1"
-                type="radio"
-              />
-              {' '}
-              Ordem alfabética
-            </Label>
-          </FormGroup>
-        </Col>
-      </Row>
-    </Card>
+    <div>
+      <Card className="Card">
+        <Row tag="fieldset">
+          <Col>
+            <FormGroup>
+              <CardSubtitle tag="h6">
+                Ordenar por:
+              </CardSubtitle>
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label check>
+                <Input
+                  name="radio1"
+                  type="radio"
+                  onClick={() => sortByDate()}
+                />
+                {' '}
+                Data de criação
+              </Label>
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label check>
+                <Input
+                  name="radio1"
+                  type="radio"
+                  onClick={() => sortAlphabetically()}
+                />
+                {' '}
+                Ordem alfabética
+              </Label>
+            </FormGroup>
+          </Col>
+        </Row>
+      </Card>
+      <Card className="Card">
+        <Row tag="fieldset">
+          <Col>
+            <FormGroup>
+              <CardSubtitle tag="h6">
+                Buscar por:
+              </CardSubtitle>
+            </FormGroup>
+          </Col>
+        </Row>
+      </Card>
+    </div>
   );
 }
 

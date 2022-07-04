@@ -11,16 +11,15 @@ const APP_TO_DO_BACK_URL = DEV_TEST ? 'http://localhost:3000' : 'https://to-do-l
 
 function ListProvider({ children }) {
   const [data, setData] = useState([]);
-  const [sortData, setSortData] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [selectStatus, setSelectStatus] = useState('pendente');
   const [updateId, setUpdateId] = useState(false);
+  const [order, setOrder] = useState(true);
 
   const getAllList = () => {
     axios.get(`${APP_TO_DO_BACK_URL}/list`)
       .then((response) => {
         setData(response.data);
-        setSortData(response.data);
       })
       .catch(() => {
         alert(`Sorry! The Database service is temporarily offline, but you can use the temporary version of the App!
@@ -70,6 +69,8 @@ function ListProvider({ children }) {
           ...prevState,
           response.data,
         ]);
+        setNewTask('');
+        setSelectStatus('pendente');
       })
       .catch(({ response }) => {
         alert(response.data.message);
@@ -91,10 +92,21 @@ function ListProvider({ children }) {
       });
   };
 
+  const sortByDate = () => {
+    setData((prevState) => prevState.sort((a, b) => a.date.localeCompare(b.date)));
+
+    setOrder(true);
+  };
+
+  const sortAlphabetically = () => {
+    setData((prevState) => prevState.sort((a, b) => a.task_list.localeCompare(b.task_list)));
+
+    setOrder(false);
+  };
+
   const STATUS = ['pendente', 'em andamento', 'pronto'];
 
   const VALUE_PROVIDER = {
-    sortData,
     data,
     STATUS,
     newTask,
@@ -105,7 +117,9 @@ function ListProvider({ children }) {
     createTask,
     btnDeleteTask,
     btnUpdateTask,
-    getAllList,
+    sortByDate,
+    sortAlphabetically,
+    order,
   };
 
   return (

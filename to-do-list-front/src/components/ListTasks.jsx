@@ -7,15 +7,14 @@ import ListContext from '../context/ListContext';
 
 function ListTask() {
   const {
-    sortData, data, btnDeleteTask, btnUpdateTask,
+    data, btnDeleteTask, btnUpdateTask, order,
   } = useContext(ListContext);
-  console.log('data: ', data);
-  sortData.sort((a, b) => a.task_list + b.task_list);
-  console.log('sortData: ', sortData);
 
   return (
     <section>
-      <span>Todas as Tarefas</span>
+      {order
+        ? <span><i>Todas as Tarefas por ordem de criação:</i></span>
+        : <span><i>Todas as Tarefas em ordem alfabética:</i></span>}
       <Table
         hover
         responsive
