@@ -15,8 +15,8 @@ function ListProvider({ children }) {
   const [selectStatus, setSelectStatus] = useState('pendente');
   const [updateId, setUpdateId] = useState(false);
 
-  const updateTask = () => {
-    axios
+  const updateTask = async () => {
+    await axios
       .put(`${APP_TO_DO_BACK_URL}/list/${updateId}`, {
         task: newTask,
         status: selectStatus,
@@ -29,6 +29,10 @@ function ListProvider({ children }) {
       })
       .catch(({ response }) => {
         alert(response.data.message);
+      });
+    await axios.get(`${APP_TO_DO_BACK_URL}/list`)
+      .then((response) => {
+        setData(response.data);
       });
   };
 

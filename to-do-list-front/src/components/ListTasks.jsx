@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
-import { Table } from 'reactstrap';
+import {
+  Table,
+  Button,
+} from 'reactstrap';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
@@ -30,22 +33,26 @@ function ListTask() {
               <td>{e.status}</td>
               <td>{e.date}</td>
               <td>
-                <button
+                <Button
                   type="button"
                   id="btn-update"
+                  color="warning"
+                  outline
                   onClick={() => btnUpdateTask(e.id, e.task_list, e.status)}
                 >
-                  O
-                </button>
+                  O - Atualizar
+                </Button>
               </td>
               <td>
-                <button
+                <Button
                   type="button"
                   id="btn-delete"
+                  color="danger"
+                  outline
                   onClick={() => btnDeleteTask(e.id)}
                 >
-                  X
-                </button>
+                  X - Deletar
+                </Button>
               </td>
             </tr>
           ))}
