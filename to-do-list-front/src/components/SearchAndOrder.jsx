@@ -28,7 +28,7 @@ function SearchAndOrder() {
         <Row tag="fieldset">
           <Col>
             <FormGroup>
-              <CardSubtitle tag="h6" className="margin-top">
+              <CardSubtitle tag="h5" className="margin-top">
                 Ordenar por:
               </CardSubtitle>
             </FormGroup>
@@ -64,7 +64,7 @@ function SearchAndOrder() {
       <Card className="Card">
         <Row tag="fieldset">
           <Col>
-            <CardSubtitle tag="h6" className="margin-top">
+            <CardSubtitle tag="h5" className="margin-top">
               Buscar por:
             </CardSubtitle>
           </Col>
