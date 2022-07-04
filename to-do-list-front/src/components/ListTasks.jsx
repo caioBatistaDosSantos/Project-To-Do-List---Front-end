@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Table } from 'reactstrap';
 import ListContext from '../context/ListContext';
 
 function ListTask() {
@@ -7,7 +8,12 @@ function ListTask() {
   return (
     <section>
       <span>Todas as Tarefas</span>
-      <table>
+      <Table
+        hover
+        responsive
+        size="sm"
+        striped
+      >
         <thead>
           <tr>
             <th>Tarefa</th>
@@ -44,7 +50,7 @@ function ListTask() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Button } from 'reactstrap';
 import ListContext from '../context/ListContext';
 
 function NewTask() {
@@ -42,14 +43,17 @@ function NewTask() {
           ))}
         </select>
       </label>
-      <button
+      <Button
+        color={updateId ? 'warning' : 'success'}
+        outline
+        size="lg"
         type="button"
         id="btn-add-task"
         name="btn-add-task"
         onClick={() => (updateId ? updateTask() : createTask())}
       >
         {updateId ? 'Atualizar Tarefa' : 'Adicionar Tarefa'}
-      </button>
+      </Button>
     </section>
   );
 }
