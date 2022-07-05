@@ -71,6 +71,7 @@ function SearchAndOrder() {
           <Col>
             <Input
               type="select"
+              data-testid="column-status-search"
               id="column-status-search"
               className="margin-top"
               name="column-status-search"
