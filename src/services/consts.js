@@ -9,5 +9,7 @@ export const SEARCH_STATUS = [ALL_TASKS, 'Tarefas Pendentes', 'Tarefas em Andame
 
 // For tests:
 export const RADOM_TASK = 'RAMDOM TASK';
+export const RADOM_TASK_UPDATE = 'RAMDOM TASK UPDATE';
 export const ALL_MESSAGES_FOR_DATE_SPAN = ['Todas as Tarefas por ordem de criação:', 'Tarefas Pendentes por ordem de criação:', 'Tarefas em Andamento por ordem de criação:', 'Tarefas Prontas por ordem de criação:'];
 export const ALL_MESSAGES_FOR_ALPHABETICS_SPAN = ['Todas as Tarefas em ordem alfabética:', 'Tarefas Pendentes em ordem alfabética:', 'Tarefas em Andamento em ordem alfabética:', 'Tarefas Prontas em ordem alfabética:'];
+export const ALL_THEADS = ['Tarefa', 'Status', 'Data', 'Atualizar Tarefa', 'Remover Tarefa'];

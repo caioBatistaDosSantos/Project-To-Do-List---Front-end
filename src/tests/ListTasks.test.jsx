@@ -4,7 +4,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import {
-  ALL_MESSAGES_FOR_DATE_SPAN, SEARCH_STATUS, ALL_MESSAGES_FOR_ALPHABETICS_SPAN,
+  ALL_MESSAGES_FOR_DATE_SPAN,
+  SEARCH_STATUS,
+  ALL_MESSAGES_FOR_ALPHABETICS_SPAN,
+  ALL_THEADS,
 } from '../services/consts';
 
 describe('Testa a mensagem "listando" do span', () => {
@@ -52,6 +55,26 @@ describe('Testa a mensagem "listando" do span', () => {
 
       const message = screen.getByText(ALL_MESSAGES_FOR_ALPHABETICS_SPAN[index]);
       expect(message).toBeInTheDocument();
+    });
+  });
+});
+
+describe('Testa a tabela do component LisTasks', () => {
+  beforeEach(() => {
+    render(<App />);
+  });
+
+  it('Se contem uma tabela', () => {
+    const table = screen.getByRole('table');
+    expect(table).toBeInTheDocument();
+  });
+
+  it('Se a tabela contem o theads "Tarefa", "Status", "Data", "Atualizar Tarefa" e "Remover Tarefa"', () => {
+    ALL_THEADS.forEach((e) => {
+      const theads = screen.getByRole('columnheader', {
+        name: e,
+      });
+      expect(theads).toBeInTheDocument();
     });
   });
 });
