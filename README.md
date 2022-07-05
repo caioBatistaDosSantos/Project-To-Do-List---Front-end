@@ -48,9 +48,16 @@ Objetivo da aplicação: fazer um CRUD de uma lista de tarefas.
     - CSS
     - JS
     - Jest, React Testing Library (testes)
+
+
+## Testando a aplicação...
  
- 
- ## Feedback são bem-vindos!!
+   => Os testes ainda estão em desenvolvimentos, mas para testar a aplicação, basta seguir os dois primeiros passos da seção "Rodando Locamente" neste Readme e depois rodar o comando:
+     - `npm test`
+     - Se preferir, para averiguar a cobertura dos testes, basta rodar: `npm run test-coverage`
+
+
+## Feedback são bem-vindos!!
  
    Se Possivel, deixe seu feedback ou seu code-review! Muito Obrigado! :)🤝🛠 
    Linkedin: https://www.linkedin.com/in/caio-batista-dos-santos/
