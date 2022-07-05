@@ -47,6 +47,7 @@ Objetivo da aplicação: fazer um CRUD de uma lista de tarefas.
     - HTML
     - CSS
     - JS
+    - Jest, React Testing Library (testes)
  
  
  ## Feedback são bem-vindos!!
