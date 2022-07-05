@@ -42,34 +42,8 @@ describe('Testa o component NewANdUpdate', () => {
     expect(labelSelectStatus).toHaveValue(READY);
   });
 
-  it.only('a página contém um botao "Adicionar Tarefa"', () => {
+  it('a página contém um botao "Adicionar Tarefa"', () => {
     const btnAddTask = screen.getByRole('button', { name: /Adicionar Tarefa/i });
     expect(btnAddTask).toBeInTheDocument();
   });
-
-  // it('o botao "entrar" é habilitado com um email e uma senha validos', () => {
-  //   const labelEmail = screen.getByLabelText(/email:/i);
-  //   userEvent.type(labelEmail, RADOM_EMAIL);
-
-  //   const labelPassword = screen.getByLabelText(/senha:/i);
-  //   userEvent.type(labelPassword, RADOM_PASSWORD);
-
-  //   const btnSubmit = screen.getByRole('button', { name: /Entrar/i });
-  //   expect(btnSubmit).not.toBeDisabled();
-  // });
 });
-
-// test('o botao "entrar" muda a rota', () => {
-//   const { history } = RenderWithRouter(<App />);
-
-//   const labelEmail = screen.getByLabelText(/email:/i);
-//   userEvent.type(labelEmail, RADOM_EMAIL);
-
-//   const labelPassword = screen.getByLabelText(/senha:/i);
-//   userEvent.type(labelPassword, RADOM_PASSWORD);
-
-//   const btnSubmit = screen.getByRole('button', { name: /Entrar/i });
-//   userEvent.click(btnSubmit);
-
-//   expect(history.location.pathname).toBe(LINK);
-// });
