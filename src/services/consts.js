@@ -1,4 +1,4 @@
-export const DEV_TEST = true;
+export const DEV_TEST = false;
 export const APP_TO_DO_BACK_URL = DEV_TEST ? 'http://localhost:3000' : 'https://to-do-list-back-dev-caio.herokuapp.com';
 export const PENDING = 'pendente';
 export const STATUS = [PENDING, 'em andamento', 'pronto'];
